@@ -12,8 +12,30 @@ create table Schedule
 );
 
 DELIMITER // 
-create procedure AddSchedule()
+create procedure AddSchedule(
+	vDate date ,
+    vStartTime time,
+    vEndTime time,
+    vMaxPatients int,
+    vStatus int(1), 
+    vDID int 
+    )
 BEGIN
-
+	insert into Schedule (
+		Date,
+		StartTime,
+		EndTime,
+		MaxPatients,
+		Status, 
+		DID
+    )
+    values (
+    vDate,
+    vStartTime,
+    vEndTime,
+    vMaxPatients,
+    vStatus, 
+    vDID
+    );
 END //
 DELIMITER ;
