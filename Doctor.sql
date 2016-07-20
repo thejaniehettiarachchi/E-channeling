@@ -32,12 +32,14 @@ DELIMITER ;
 
 DELIMITER //
 create procedure UpdateDoctor (
-	vTitle varchar(4),
+	vDID int,
+    vTitle varchar(4),
 	vFName varchar(15),
     vLName varchar(30),
     vContact int(10),
 	vEmail varchar(50),
 	vFee double(8,2)
+    
 )
 
 Begin
@@ -47,18 +49,28 @@ Begin
     LName = vLName,
     Contact = vContact,
 	Email = vEmail,
-	Fee = vFee;
+	Fee = vFee
+    where DID = vDID;
+    
    
 END //
 DELIMITER ;
 
 DELIMITER //
-create procedure DeleteDoctor (DID int)
+create procedure DeleteDoctor (vDID int)
 
 Begin
 	update Doctor set 
-    isDeleted = true;
+    isDeleted = true where DID = vDID;
    
 END //
 DELIMITER ;
+DELIMITER //
+create procedure RecoverDoctor (vDID int)
 
+Begin
+	update Doctor set 
+    isDeleted = false where DID = vDID;
+   
+END //
+DELIMITER ;
