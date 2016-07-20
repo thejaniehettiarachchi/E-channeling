@@ -37,5 +37,18 @@ BEGIN
     vStatus, 
     vDID
     );
+    
+    COMMIT;
+   
+rollback;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+create procedure CancelSchedule(vSID int)
+BEGIN
+ update Schedule set Status = false where SID = VSID;
+ update 
 END //
 DELIMITER ;
