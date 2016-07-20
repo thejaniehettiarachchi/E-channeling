@@ -19,20 +19,21 @@ create procedure AddAppointment(
     vPID int,
     vDID int,
 	vSchID int,
-    vDate date,
-	vTime time,
-	vQueNo int,
+    vDate date,	
 	vFee double(8,2),
     vStatus int(1)
     )
+
 BEGIN
+
+	vQueNo int;
+    
+
 	insert into Schedule (
 	PID,
     DID,
 	SchID,
-    Date,
-    Time,
-	QueNo,
+    Date,   
     Fee,
     Status
     )
@@ -40,9 +41,7 @@ BEGIN
     vPID,
     vDID,
 	vSchID,
-    vDate,
-    vTime,
-	vQueNo,
+    vDate,   
     vFee,
     2
     );
