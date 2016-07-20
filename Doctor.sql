@@ -3,7 +3,7 @@ use AMC;
 create table Doctor
 (
 	DID int Primary Key auto_increment,
-	Title varchar(4),
+	Title varchar(7),
 	FName varchar(15) not null,
     LName varchar(30) not null,
     Contact int(10),

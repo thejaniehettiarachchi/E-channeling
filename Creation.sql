@@ -22,7 +22,7 @@ create table Patient
 create table Doctor
 (
 	DID int Primary Key auto_increment,
-    Title varchar(4),
+    Title varchar(7),
      FName varchar(15) not null,
     LName varchar(30) not null,
     Contact int(10),
@@ -73,3 +73,4 @@ create table Appointment
 Alter table Doctor Add isDeleted bool default false after Fee;
 Alter table Patient Add isDeleted bool default false after isLocal;
 Alter table Schedule Add RoomID int after DID;
+Alter table Doctor modify Title varchar(7);
