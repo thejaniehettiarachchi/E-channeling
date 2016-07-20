@@ -1,3 +1,5 @@
+use AMC;
+
 create table Patient
 (
 	PID int primary key auto_increment,
