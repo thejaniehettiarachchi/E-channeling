@@ -1,3 +1,5 @@
+use AMC;
+
 create table Doctor
 (
 	DID int Primary Key auto_increment,
