@@ -40,6 +40,33 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER // 
+create procedure UpdateSchedule(
+	
+	vSchID int,
+    vDate date,
+    vStartTime time,
+    vEndTime time,
+    vMaxPatients int,
+    vStatus int(1), 
+    vDID int
+)
+
+BEGIN
+
+	update Schedule set 
+    Date = vDate,
+    StartTime = vStartTime,
+    EndTime = vEndTime,
+    MaxPatients = vMaxPatients,
+    Status = vStatus, 
+    DID = vDID
+    
+    where SchID = vSchID;    
+
+END //
+DELIMITER ;
+
 DELIMITER //
 create procedure CancelSchedule(vSID int)
 BEGIN
