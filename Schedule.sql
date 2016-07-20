@@ -64,3 +64,11 @@ BEGIN
 >>>>>>> origin/Version1
 END //
 DELIMITER ;
+
+DELIMITER //
+create procedure CancelSchedule(vSID int)
+BEGIN
+ update Schedule set Status = false where SID = VSID;
+ 
+END //
+DELIMITER ;
