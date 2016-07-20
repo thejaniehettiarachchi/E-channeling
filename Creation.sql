@@ -15,7 +15,8 @@ create table Patient
     Title varchar(4),
     CMobile int(10),
     CHome int(10),
-    IsLocal bool
+    IsLocal bool,
+    isDeleted bool default false
 );
 
 create table Doctor
@@ -26,7 +27,8 @@ create table Doctor
     LName varchar(30) not null,
     Contact int(10),
      Email varchar(50),
-     Fee double(8,2)
+     Fee double(8,2),
+     isDeleted bool default false
 );
 
 create table Schedule
@@ -37,7 +39,8 @@ create table Schedule
     EndTime time not null,
     MaxPatients int not null,
     Status int(1), 
-    DID int references Doctor(DID)
+    DID int references Doctor(DID),
+    RoomID int
 );
 
 create table Speciality
@@ -66,3 +69,7 @@ create table Appointment
     Status int(1)
     
 );
+
+Alter table Doctor Add isDeleted bool default false after Fee;
+Alter table Patient Add isDeleted bool default false after isLocal;
+Alter table Schedule Add RoomID int after DID;
