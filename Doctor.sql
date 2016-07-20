@@ -7,18 +7,19 @@ create table Doctor
 	FName varchar(15) not null,
     LName varchar(30) not null,
     Contact int(10),
-     Email varchar(50),
-     Fee double(8,2)
+	Email varchar(50),
+	Fee double(8,2),
+    isDeleted bool default false
 );
 
 DELIMITER //
 create procedure AddDoctor (
-	Title varchar(4),
-	FName varchar(15),
-    LName varchar(30),
-    Contact int(10),
-	Email varchar(50),
-	Fee double(8,2)
+	vTitle varchar(4),
+	vFName varchar(15),
+    vLName varchar(30),
+    vContact int(10),
+	vEmail varchar(50),
+	vFee double(8,2)
 )
 
 Begin
@@ -28,3 +29,36 @@ Begin
 
 END //
 DELIMITER ;
+
+DELIMITER //
+create procedure UpdateDoctor (
+	vTitle varchar(4),
+	vFName varchar(15),
+    vLName varchar(30),
+    vContact int(10),
+	vEmail varchar(50),
+	vFee double(8,2)
+)
+
+Begin
+	update Doctor set 
+    Title = vTitle,
+	Fname = vFName,
+    LName = vLName,
+    Contact = vContact,
+	Email = vEmail,
+	Fee = vFee;
+   
+END //
+DELIMITER ;
+
+DELIMITER //
+create procedure DeleteDoctor (DID int)
+
+Begin
+	update Doctor set 
+    isDeleted = true;
+   
+END //
+DELIMITER ;
+
