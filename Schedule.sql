@@ -48,7 +48,6 @@ create procedure UpdateSchedule(
     vStartTime time,
     vEndTime time,
     vMaxPatients int,
-    vStatus int(1), 
     vDID int
 )
 
@@ -59,7 +58,6 @@ BEGIN
     StartTime = vStartTime,
     EndTime = vEndTime,
     MaxPatients = vMaxPatients,
-    Status = vStatus, 
     DID = vDID
     
     where SchID = vSchID;    
@@ -73,5 +71,12 @@ BEGIN
  update Schedule set Status = 1 where SchID = VSchID;
  update Appoinment set status = 1 where SchID = VSchID; 
 END //
+DELIMITER ;
+
+DELIMITER // 
+create procedure SetScheduleStatus(vSchID int, vStatus int)
+BEGIN 
+	update Schedule set Status = vStatus where SchID = vSchID;
+END // 
 DELIMITER ;
 
