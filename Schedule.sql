@@ -12,36 +12,12 @@ create table Schedule
 );
 
 DELIMITER // 
-<<<<<<< HEAD
-create procedure UpdateSchedule(
-	
-	vSchID int,
-    vDate date,
-=======
 create procedure AddSchedule(
 	vDate date ,
->>>>>>> origin/Version1
     vStartTime time,
     vEndTime time,
     vMaxPatients int,
     vStatus int(1), 
-<<<<<<< HEAD
-    vDID int
-)
-
-BEGIN
-
-	update Schedule set 
-    Date = vDate,
-    StartTime = vStartTime,
-    EndTime = vEndTime,
-    MaxPatients = vMaxPatients,
-    Status = vStatus, 
-    DID = vDID
-    
-    where SchID = vSchID;    
-
-=======
     vDID int 
     )
 BEGIN
@@ -61,7 +37,6 @@ BEGIN
     vStatus, 
     vDID
     );
->>>>>>> origin/Version1
 END //
 DELIMITER ;
 
