@@ -68,9 +68,10 @@ END //
 DELIMITER ;
 
 DELIMITER //
-create procedure CancelSchedule(vSID int)
+create procedure CancelSchedule(vSchID int)
 BEGIN
- update Schedule set Status = false where SID = VSID;
- 
+ update Schedule set Status = 1 where SchID = VSchID;
+ update Appoinment set status = 1 where SchID = VSchID; 
 END //
 DELIMITER ;
+
