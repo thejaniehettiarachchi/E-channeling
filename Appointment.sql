@@ -121,7 +121,7 @@ BEGIN
 	Declare QueueNo int default 0;
    
     Declare avrTime time;
-    #Declare appTime time;
+    Declare appTime time;
     
     set QueueNo = getQueueNo(vSchID);
     
@@ -130,8 +130,9 @@ BEGIN
     where SchID = vSchID;
     
     set avrTime = (eTime -sTime) / mPatients;
+    set appTime = (sTime + avrTime * QueueNo) - '001000';
     
-    return avrTime;
+    return appTime;
     
 END //
 DELIMITER ;
