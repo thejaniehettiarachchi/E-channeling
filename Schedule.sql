@@ -99,16 +99,19 @@ BEGIN
      where S.Date = vDateToFind;
 END //
 DELIMITER ;
+
+
 drop procedure GetFreeSlotsForADay;
+
 DELIMITER //
-create procedure GetFreeSlotsForADay(vDateToFind date)
+create procedure GetFreeSlotsForADay(vDateToFind date, vRoomID int)
 BEGIN
 		DECLARE $StartIndex int; 		# Contains the start index of the starting row in the availalbe schedules
 		DECLARE $EndIndex int;   		# Contains the Last index of the starting row in the availalbe schedules
         DECLARE $CenterStartTime time ; # This is the time when Medical Center Starts 
 		DECLARE $CenterEndTime time ;	# This is the time when Medical Center Ends
     
-		set $CenterStartTime = '0800000';
+		set $CenterStartTime = '080000';
         set $CenterEndTime = '2000000';
         
         
@@ -138,7 +141,7 @@ BEGIN
 		 (select S.Date, $CenterStartTime, S.StartTime  from (
 						select * from Schedule where Status = 2
 					   ) AS S 
-		 where S.Date = vDateToFind
+		 where S.Date = vDateToFind AND S.RoomID = vRoomID
          LIMIT 1)
 	UNION
 		 (select S.Date, S.EndTime, 
@@ -151,7 +154,7 @@ BEGIN
 					   (
 							select * from Schedule where Status = 2
 					   ) AS S
-         where S.Date = vDateToFind
+         where S.Date = vDateToFind AND S.RoomID = vRoomID
          LIMIT 1)
          ;
          
@@ -170,7 +173,7 @@ BEGIN
 							select * from Schedule where Status = 2
 					   ) AS S
                        
-		 where S.Date = vDateToFind AND S.SchID > $StartIndex AND S.SchID < $EndIndex;
+		 where S.Date = vDateToFind AND S.SchID > $StartIndex AND S.SchID < $EndIndex AND S.RoomID = vRoomID;
          
          # Inserting the Last row of the Current Schedules into availableSlots
          
@@ -179,7 +182,7 @@ BEGIN
 		 select S.Date, S.EndTime, $CenterEndTIme  from (
 						select * from Schedule where Status = 2
 					   ) AS S 
-		 where S.Date = vDateToFind
+		 where S.Date = vDateToFind AND S.RoomID = vRoomID
          Order by S.SchID Desc
          LIMIT 1;
          
@@ -196,30 +199,29 @@ DELIMITER ;
 drop procedure GetFreeSlotsForTheWeek;
 
 DELIMITER //
-create procedure GetFreeSlotsForTheWeek(vDateToFind date)
+create procedure GetFreeSlotsForTheWeek(vDateToFind date, vRoomID int)
 BEGIN
 		DECLARE $StartIndex int; 		# Contains the start index of the starting row in the availalbe schedules
 		DECLARE $EndIndex int;   		# Contains the Last index of the starting row in the availalbe schedules
         DECLARE $CenterStartTime time ; # This is the time when Medical Center Starts 
 		DECLARE $CenterEndTime time ;	# This is the time when Medical Center Ends
         
-		set $CenterStartTime = '0800000';
+		set $CenterStartTime = '080000';
         set $CenterEndTime = '2000000';
         
 		 Select S.SchID into $StartIndex from (
 						select * from Schedule where Status = 2
 					   ) AS S 
-		 where weekofyear(S.Date) = weekofyear(vDateToFind)
+		 where weekofyear(S.Date) = weekofyear(vDateToFind) AND S.RoomID = vRoomID
 		 LIMIT 1;		 
              
 		 
 		 Select S.SchID into $EndIndex from (
 						select * from Schedule where Status = 2
 					   ) AS S 
-		 where weekofyear(S.Date) = weekofyear(vDateToFind) 
+		 where weekofyear(S.Date) = weekofyear(vDateToFind) AND S.RoomID = vRoomID 
 		 ORDER BY S.SchID desc
-		 LIMIT 1;        
-				
+		 LIMIT 1;       			
 			
             
 		create temporary table AvailableSlots
@@ -228,13 +230,15 @@ BEGIN
 			StartTime time,
 			EndTime time
 		);
+        
         # Inserting the First row of the Current Schedules into availableSlots
+        
 		 insert into AvailableSlots (Date, StartTime, EndTime)    
 		 (
 			 select S.Date, $CenterStartTime, S.StartTime  from (
 							select * from Schedule where Status = 2
 						   ) AS S 
-			 where weekofyear(S.Date) = weekofyear(vDateToFind)
+			 where weekofyear(S.Date) = weekofyear(vDateToFind) AND S.RoomID = vRoomID
 			 LIMIT 1
          )
          UNION         
@@ -249,7 +253,7 @@ BEGIN
 						   (
 								select * from Schedule where Status = 2
 						   ) AS S
-			 where weekofyear(S.Date) = weekofyear(vDateToFind)
+			 where weekofyear(S.Date) = weekofyear(vDateToFind) AND S.RoomID = vRoomID
 			 LIMIT 1
 		 )         
          ;
@@ -269,7 +273,7 @@ BEGIN
 							select * from Schedule where Status = 2
 					   ) AS S
                        
-		 where weekofyear(S.Date) = weekofyear(vDateToFind) AND S.SchID > $StartIndex AND S.SchID < $EndIndex;
+		 where weekofyear(S.Date) = weekofyear(vDateToFind) AND S.SchID > $StartIndex AND S.SchID < $EndIndex AND S.RoomID = vRoomID;
          
          # Inserting the Last row of the Current Schedules into availableSlots
          
@@ -278,7 +282,7 @@ BEGIN
 		 select S.Date, S.EndTime, $CenterEndTime  from (
 						select * from Schedule where Status = 2
 					   ) AS S 
-		 where weekofyear(S.Date) = weekofyear(vDateToFind)
+		 where weekofyear(S.Date) = weekofyear(vDateToFind) AND S.RoomID = vRoomID
          Order by S.SchID Desc
          LIMIT 1;
          
@@ -293,8 +297,8 @@ END //
 DELIMITER ;
 
 
-call GetFreeSlotsForADay(NOW());
-call GetFreeSlotsForTheWeek('2016-05-26');
+call GetFreeSlotsForADay('2016-05-26',2);
+call GetFreeSlotsForTheWeek('2016-05-26',3);
 
 
 truncate Schedule;
@@ -318,6 +322,18 @@ insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
 Values ('2016-05-26','083000','103000',5,2,1);
 insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
 Values ('2016-05-26','083000','103000',5,2,1);
+
+
+UPDATE `amc`.`schedule` SET `RoomID`= 1 WHERE `SchID`='1';
+UPDATE `amc`.`schedule` SET `RoomID`= 1 WHERE `SchID`='2';
+UPDATE `amc`.`schedule` SET `RoomID`= 1 WHERE `SchID`='3';
+UPDATE `amc`.`schedule` SET `RoomID`= 3 WHERE `SchID`='4';
+UPDATE `amc`.`schedule` SET `RoomID`= 1 WHERE `SchID`='5';
+UPDATE `amc`.`schedule` SET `RoomID`= 2 WHERE `SchID`='6';
+UPDATE `amc`.`schedule` SET `RoomID`= 2 WHERE `SchID`='7';
+UPDATE `amc`.`schedule` SET `RoomID`= 1 WHERE `SchID`='8';
+UPDATE `amc`.`schedule` SET `RoomID`= 2 WHERE `SchID`='9';
+UPDATE `amc`.`schedule` SET `RoomID`= 2 WHERE `SchID`='10';
 
 drop temporary table abc;
 
