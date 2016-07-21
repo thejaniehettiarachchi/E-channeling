@@ -103,10 +103,10 @@ drop procedure GetFreeSlotsForADay;
 DELIMITER //
 create procedure GetFreeSlotsForADay(vDateToFind date)
 BEGIN
-		DECLARE $StartIndex int;
-		DECLARE $EndIndex int;
-		DECLARE $CenterStartTime time ;
-		DECLARE $CenterEndTime time ;
+		DECLARE $StartIndex int; 		# Contains the start index of the starting row in the availalbe schedules
+		DECLARE $EndIndex int;   		# Contains the Last index of the starting row in the availalbe schedules
+        DECLARE $CenterStartTime time ; # This is the time when Medical Center Starts 
+		DECLARE $CenterEndTime time ;	# This is the time when Medical Center Ends
     
 		set $CenterStartTime = '0800000';
         set $CenterEndTime = '2000000';
@@ -198,10 +198,10 @@ drop procedure GetFreeSlotsForTheWeek;
 DELIMITER //
 create procedure GetFreeSlotsForTheWeek(vDateToFind date)
 BEGIN
-		DECLARE $StartIndex int;
-		DECLARE $EndIndex int;
-        DECLARE $CenterStartTime time ;
-		DECLARE $CenterEndTime time ;
+		DECLARE $StartIndex int; 		# Contains the start index of the starting row in the availalbe schedules
+		DECLARE $EndIndex int;   		# Contains the Last index of the starting row in the availalbe schedules
+        DECLARE $CenterStartTime time ; # This is the time when Medical Center Starts 
+		DECLARE $CenterEndTime time ;	# This is the time when Medical Center Ends
         
 		set $CenterStartTime = '0800000';
         set $CenterEndTime = '2000000';
@@ -218,8 +218,10 @@ BEGIN
 					   ) AS S 
 		 where weekofyear(S.Date) = weekofyear(vDateToFind) 
 		 ORDER BY S.SchID desc
-		 LIMIT 1;
-    
+		 LIMIT 1;        
+				
+			
+            
 		create temporary table AvailableSlots
 		(
 			Date date,
@@ -285,7 +287,7 @@ BEGIN
          
          Select * from AvailableSlots order by Date;     
          
-         drop table AvailableSlots;
+        drop temporary table AvailableSlots;
      
 END // 
 DELIMITER ;
@@ -317,5 +319,5 @@ Values ('2016-05-26','083000','103000',5,2,1);
 insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
 Values ('2016-05-26','083000','103000',5,2,1);
 
-
+drop temporary table abc;
 
