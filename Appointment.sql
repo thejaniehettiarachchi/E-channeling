@@ -26,16 +26,21 @@ create procedure AddAppointment(
 
 BEGIN
 
-	vQueNo int;
-    
+	Declare vQueNo int;
+    Declare vtime time;
 
-	insert into Schedule (
+	set vQueNo = getQueueNo(vSchID);
+    set vTime = getTime(SchID);
+    
+	insert into Appointment (
 	PID,
     DID,
 	SchID,
     Date,   
     Fee,
-    Status
+    Status,
+    QueNo,
+    Time
     )
     values (
     vPID,
@@ -43,7 +48,9 @@ BEGIN
 	vSchID,
     vDate,   
     vFee,
-    2
+    2,
+    vQueNo,
+    vTime
     );
 END //
 DELIMITER ;
@@ -90,4 +97,42 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER //
+create function getQueueNo (vSchID int) returns int 
+    
+BEGIN
+    
+	Declare QueueNo int default 0;
+    
+    select count(*) into QueueNo
+    from Appointment
+    where SchID = vSchID;
+    
+    return (QueueNo +1);
+    
+END //
+DELIMITER ;
+
+DELIMITER //
+create function getTime (vSchID int) returns time 
+    
+BEGIN
+    
+	Declare QueueNo int default 0;
+   
+    Declare avrTime time;
+    #Declare appTime time;
+    
+    set QueueNo = getQueueNo(vSchID);
+    
+    select startTime, endTime, maxPatients into sTime, eTime, mPatients
+    from Schedule
+    where SchID = vSchID;
+    
+    set avrTime = (eTime -sTime) / mPatients;
+    
+    return avrTime;
+    
+END //
+DELIMITER ;
 
