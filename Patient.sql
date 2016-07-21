@@ -42,9 +42,12 @@ Begin
 END //
 DELIMITER ;
 
+drop procedure UpdatePatient;
+
 DELIMITER //
 create procedure UpdatePatient (
-	vPID int,
+	vPID int,    
+    vTitle varchar(4),
 	vFName varchar(15),
     vLName varchar(30),
     vANumber varchar(25),
@@ -52,7 +55,6 @@ create procedure UpdatePatient (
     vACity varchar(25),
     vEmail varchar(50),
     vNICNo varchar(10),
-    vTitle varchar(4),
     vCMobile int(10),
     vCHome int(10),
     vIsLocal bool
