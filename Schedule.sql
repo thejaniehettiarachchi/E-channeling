@@ -89,9 +89,10 @@ DELIMITER ;
 
 
 DELIMITER //
-create procedure GetSchedulesForDay(vDateToFind date, OUT resultSet int)
+create procedure GetSchedulesForDay(vDateToFind date)
 BEGIN 
-	
+
+    
 	select S.SchID into resultset from (
 					select * from Schedule where Status = 2
 				   ) AS S 
@@ -104,7 +105,13 @@ create procedure GetFreeSlotsForADay(vDateToFind date)
 BEGIN
 		DECLARE $StartIndex int;
 		DECLARE $EndIndex int;
-		
+		DECLARE $CenterStartTime time ;
+		DECLARE $CenterEndTime time ;
+    
+		set $CenterStartTime = '0800000';
+        set $CenterEndTime = '2000000';
+        
+        
 		 Select S.SchID into $StartIndex from (
 						select * from Schedule where Status = 2
 					   ) AS S 
@@ -128,26 +135,48 @@ BEGIN
         # Inserting the First row of the Current Schedules into availableSlots
 		 insert into AvailableSlots (Date, StartTime, EndTime)
     
-		 select S.Date, S.StartTime, S.EndTime  from (
+		 (select S.Date, $CenterStartTime, S.StartTime  from (
 						select * from Schedule where Status = 2
 					   ) AS S 
 		 where S.Date = vDateToFind
-         LIMIT 1;
+         LIMIT 1)
+	UNION
+		 (select S.Date, S.EndTime, 
+						 (
+							 select StartTime 
+							 from Schedule 
+							 where status = 2 AND SchID > S.SchID LIMIT 1
+                         )
+					   from 
+					   (
+							select * from Schedule where Status = 2
+					   ) AS S
+         where S.Date = vDateToFind
+         LIMIT 1)
+         ;
          
          # Inserting all rows between first and last rows of the Current Schedules into availableSlots
          
          insert into AvailableSlots (Date, StartTime, EndTime)
     
-		 select S.Date, S.StartTime, S.EndTime  from (
-						select * from Schedule where Status = 2
-					   ) AS S 
+		 select S.Date, S.EndTime, 
+						 (
+							 select StartTime 
+							 from Schedule 
+							 where status = 2 AND SchID > S.SchID LIMIT 1
+                         )
+					   from 
+					   (
+							select * from Schedule where Status = 2
+					   ) AS S
+                       
 		 where S.Date = vDateToFind AND S.SchID > $StartIndex AND S.SchID < $EndIndex;
          
          # Inserting the Last row of the Current Schedules into availableSlots
          
          insert into AvailableSlots (Date, StartTime, EndTime)
     
-		 select S.Date, S.StartTime, S.EndTime  from (
+		 select S.Date, S.EndTime, $CenterEndTIme  from (
 						select * from Schedule where Status = 2
 					   ) AS S 
 		 where S.Date = vDateToFind
@@ -164,4 +193,129 @@ BEGIN
 END // 
 DELIMITER ;
 
+drop procedure GetFreeSlotsForTheWeek;
+
+DELIMITER //
+create procedure GetFreeSlotsForTheWeek(vDateToFind date)
+BEGIN
+		DECLARE $StartIndex int;
+		DECLARE $EndIndex int;
+        DECLARE $CenterStartTime time ;
+		DECLARE $CenterEndTime time ;
+        
+		set $CenterStartTime = '0800000';
+        set $CenterEndTime = '2000000';
+        
+		 Select S.SchID into $StartIndex from (
+						select * from Schedule where Status = 2
+					   ) AS S 
+		 where weekofyear(S.Date) = weekofyear(vDateToFind)
+		 LIMIT 1;		 
+             
+		 
+		 Select S.SchID into $EndIndex from (
+						select * from Schedule where Status = 2
+					   ) AS S 
+		 where weekofyear(S.Date) = weekofyear(vDateToFind) 
+		 ORDER BY S.SchID desc
+		 LIMIT 1;
+    
+		create temporary table AvailableSlots
+		(
+			Date date,
+			StartTime time,
+			EndTime time
+		);
+        # Inserting the First row of the Current Schedules into availableSlots
+		 insert into AvailableSlots (Date, StartTime, EndTime)    
+		 (
+			 select S.Date, $CenterStartTime, S.StartTime  from (
+							select * from Schedule where Status = 2
+						   ) AS S 
+			 where weekofyear(S.Date) = weekofyear(vDateToFind)
+			 LIMIT 1
+         )
+         UNION         
+		 (
+			 select S.Date, S.EndTime, 
+							 (
+								 select StartTime 
+								 from Schedule 
+								 where status = 2 AND SchID > S.SchID LIMIT 1
+							 )
+						   from 
+						   (
+								select * from Schedule where Status = 2
+						   ) AS S
+			 where weekofyear(S.Date) = weekofyear(vDateToFind)
+			 LIMIT 1
+		 )         
+         ;
+         
+         # Inserting all rows between first and last rows of the Current Schedules into availableSlots
+         
+         insert into AvailableSlots (Date, StartTime, EndTime)
+    
+		 select S.Date, S.EndTime, 
+						 (
+							 select StartTime 
+							 from Schedule 
+							 where status = 2 AND SchID > S.SchID LIMIT 1
+                         )
+					   from 
+					   (
+							select * from Schedule where Status = 2
+					   ) AS S
+                       
+		 where weekofyear(S.Date) = weekofyear(vDateToFind) AND S.SchID > $StartIndex AND S.SchID < $EndIndex;
+         
+         # Inserting the Last row of the Current Schedules into availableSlots
+         
+         insert into AvailableSlots (Date, StartTime, EndTime)
+    
+		 select S.Date, S.EndTime, $CenterEndTime  from (
+						select * from Schedule where Status = 2
+					   ) AS S 
+		 where weekofyear(S.Date) = weekofyear(vDateToFind)
+         Order by S.SchID Desc
+         LIMIT 1;
+         
+         # Selecting all in AvailableSlots table
+       
+         
+         Select * from AvailableSlots order by Date;     
+         
+         drop table AvailableSlots;
+     
+END // 
+DELIMITER ;
+
+
 call GetFreeSlotsForADay(NOW());
+call GetFreeSlotsForTheWeek('2016-05-26');
+
+
+truncate Schedule;
+insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
+Values ('2016-05-26','083000','103000',5,2,1);
+insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
+Values ('2016-05-26','133000','143000',5,2,1);
+insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
+Values ('2016-05-27','083000','103000',5,2,1);
+insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
+Values ('2016-05-28','083000','103000',5,2,1);
+insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
+Values ('2016-05-29','083000','103000',5,2,1);
+insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
+Values ('2016-05-30','083000','103000',5,2,1);
+insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
+Values ('2016-05-31','083000','103000',5,2,1);
+insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
+Values ('2016-06-01','083000','103000',5,2,1);
+insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
+Values ('2016-05-26','083000','103000',5,2,1);
+insert into Schedule (Date, StartTime, EndTime, MaxPatients, Status, DID)
+Values ('2016-05-26','083000','103000',5,2,1);
+
+
+
