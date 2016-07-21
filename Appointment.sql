@@ -160,8 +160,9 @@ BEGIN
     set docFee = ( 
 		select d.Fee 
         from Doctor as d, Schedule as s
-        where d.DID = s.DID and s.SID = vSID
+        where s.SchID = vSchID and d.DID = s.DID
 	);
+    
     
     set Fee = hosFee + docFee;
     
@@ -174,4 +175,5 @@ DELIMITER ;
 
 select getTime(1);
 
+drop function getFee;
 drop function getTime;
