@@ -8,3 +8,8 @@ where D.DID IN (
     From Schedule 
     where Status = 2
 )
+
+
+create or replace view AvailalbeTimeSlotsForWeek
+AS
+SELECT 
