@@ -14,14 +14,15 @@ create table Appointment
     
 );
 
+drop procedure AddAppointment;
+
 DELIMITER // 
 create procedure AddAppointment(
     vPID int,
     vDID int,
 	vSchID int,
     vDate date,	
-	vFee double(8,2),
-    vStatus int(1)
+	vFee double(8,2)
     )
 
 BEGIN
@@ -30,7 +31,7 @@ BEGIN
     Declare vtime time;
 
 	set vQueNo = getQueueNo(vSchID);
-    set vTime = getTime(SchID);
+    set vTime = getTime(vSchID);
     
 	insert into Appointment (
 	PID,
@@ -119,7 +120,9 @@ create function getTime (vSchID int) returns time
 BEGIN
     
 	Declare QueueNo int default 0;
-   
+	Declare sTime time;
+	Declare eTime time;
+	Declare mPatients int;
     Declare avrTime time;
     Declare appTime time;
     
@@ -129,11 +132,17 @@ BEGIN
     from Schedule
     where SchID = vSchID;
     
-    set avrTime = (eTime -sTime) / mPatients;
-    set appTime = (sTime + avrTime * QueueNo) - '001000';
+  # set avrTime = sec_to_time(Time_to_sec(eTime -sTime) / mPatients);
+    set avrTime =(time_to_sec(eTime) -time_to_sec(sTime))/mPatients;
+  #  select avrTime;
+    set appTime = sec_to_time(time_to_sec(sTime) + avrTime * (QueueNo-1) - 600);
     
     return appTime;
     
 END //
 DELIMITER ;
 
+
+select getTime(1);
+
+drop function getTime;

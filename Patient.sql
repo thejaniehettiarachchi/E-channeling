@@ -16,21 +16,24 @@ create table Patient
     IsLocal bool,
     isDeleted bool default false
 );
+
 DELIMITER //
 create procedure AddPatient (
-	vFName varchar(15),
+
+    vTitle varchar(4),	
+    vFName varchar(15),
     vLName varchar(30),
     vANumber varchar(25),
     vAStreet varchar(25),
     vACity varchar(25),
     vEmail varchar(50),
     vNICNo varchar(10),
-    vTitle varchar(4),
     vCMobile int(10),
     vCHome int(10),
     vIsLocal bool
 
 )
+
 Begin 
 
 	insert into Patient (FName,LName,ANumber, AStreet,ACity,Email,NICNo,Title,CMobile,CHome,IsLocal) 
