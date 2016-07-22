@@ -1,2 +1,11 @@
 C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\bin\Debug\AMC.exe.config
 C:\Users\thhelk\Documents\GitHub\E-channeling\System\AMC\AMC\bin\Debug\AMC.exe.config
+C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\bin\Debug\AMC.exe
+C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\bin\Debug\AMC.pdb
+C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.csprojResolveAssemblyReference.cache
+C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.Form1.resources
+C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.Properties.Resources.resources
+C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.ScrSetAppointment.resources
+C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.csproj.GenerateResource.Cache
+C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.exe
+C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.pdb
