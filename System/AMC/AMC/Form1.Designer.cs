@@ -28,60 +28,62 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.tabControl1.SuspendLayout();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.Patient = new System.Windows.Forms.GroupBox();
+			this.button1 = new System.Windows.Forms.Button();
+			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// tabControl1
+			// groupBox1
 			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Location = new System.Drawing.Point(12, 38);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(1070, 576);
-			this.tabControl1.TabIndex = 0;
+			this.groupBox1.Controls.Add(this.button1);
+			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox1.Location = new System.Drawing.Point(450, 75);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(309, 415);
+			this.groupBox1.TabIndex = 0;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Doctor";
 			// 
-			// tabPage1
+			// Patient
 			// 
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(1062, 550);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Appointment";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.Patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Patient.Location = new System.Drawing.Point(53, 75);
+			this.Patient.Name = "Patient";
+			this.Patient.Size = new System.Drawing.Size(333, 415);
+			this.Patient.TabIndex = 1;
+			this.Patient.TabStop = false;
+			this.Patient.Text = "Patient";
 			// 
-			// tabPage2
+			// button1
 			// 
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(1062, 550);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "tabPage2";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.button1.Location = new System.Drawing.Point(42, 73);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(232, 41);
+			this.button1.TabIndex = 0;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1094, 626);
-			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.Patient);
+			this.Controls.Add(this.groupBox1);
 			this.Name = "Form1";
 			this.Text = "Form1";
-			this.tabControl1.ResumeLayout(false);
+			this.groupBox1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.GroupBox Patient;
+
 	}
 }
 
