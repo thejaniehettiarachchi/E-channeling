@@ -1,1 +1,2 @@
 C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\bin\Debug\AMC.exe.config
+C:\Users\thhelk\Documents\GitHub\E-channeling\System\AMC\AMC\bin\Debug\AMC.exe.config

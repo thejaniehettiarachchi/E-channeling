@@ -129,7 +129,7 @@ BEGIN
     Declare extraTime int; #extra time to arrive early (seconds)
     
     set QueueNo = getQueueNo(vSchID);
-    set extraTime = 600;
+    set extraTime = 1200;
     
     select startTime, endTime, maxPatients into sTime, eTime, mPatients
     from Schedule
