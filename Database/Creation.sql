@@ -70,6 +70,12 @@ create table Appointment
     
 );
 
+create table Room
+(
+	RoomID int primary key auto_increment,
+    Name varchar(30) 
+);
+
 Alter table Doctor Add isDeleted bool default false after Fee;
 Alter table Patient Add isDeleted bool default false after isLocal;
 Alter table Schedule Add RoomID int after DID;
