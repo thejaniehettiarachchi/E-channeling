@@ -9,5 +9,10 @@ C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.ScrSe
 C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.csproj.GenerateResource.Cache
 C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.exe
 C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.pdb
+<<<<<<< HEAD
 C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.DoctorRegistration.resources
 C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.ScrCancelAppointment.resources
+=======
+C:\Users\thhelk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.exe
+C:\Users\thhelk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.pdb
+>>>>>>> d98f02401cd1341a4cb1226d798157fd45fac28f
