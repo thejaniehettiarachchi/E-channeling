@@ -9,3 +9,5 @@ C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.ScrSe
 C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.csproj.GenerateResource.Cache
 C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.exe
 C:\Users\nicwlk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.pdb
+C:\Users\thhelk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.exe
+C:\Users\thhelk\Documents\GitHub\E-channeling\System\AMC\AMC\obj\Debug\AMC.pdb
