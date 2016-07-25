@@ -16,7 +16,7 @@ namespace AMC
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new ScrHome());
+			Application.Run(new Form1());
 		}
 	}
 }

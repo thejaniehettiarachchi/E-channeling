@@ -34,18 +34,18 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
+			this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+			this.button1 = new System.Windows.Forms.Button();
 			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+			this.label6 = new System.Windows.Forms.Label();
 			this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
-			this.label6 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.groupBox1.SuspendLayout();
@@ -110,14 +110,30 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Check Time";
 			// 
-			// label2
+			// dateTimePicker3
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(15, 25);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(30, 13);
-			this.label2.TabIndex = 0;
-			this.label2.Text = "From";
+			this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+			this.dateTimePicker3.Location = new System.Drawing.Point(62, 19);
+			this.dateTimePicker3.Name = "dateTimePicker3";
+			this.dateTimePicker3.Size = new System.Drawing.Size(130, 20);
+			this.dateTimePicker3.TabIndex = 5;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(465, 18);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(98, 21);
+			this.button1.TabIndex = 4;
+			this.button1.Text = "Check";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// dateTimePicker2
+			// 
+			this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+			this.dateTimePicker2.Location = new System.Drawing.Point(300, 18);
+			this.dateTimePicker2.Name = "dateTimePicker2";
+			this.dateTimePicker2.Size = new System.Drawing.Size(130, 20);
+			this.dateTimePicker2.TabIndex = 2;
 			// 
 			// label3
 			// 
@@ -128,13 +144,14 @@
 			this.label3.TabIndex = 1;
 			this.label3.Text = "To";
 			// 
-			// dateTimePicker2
+			// label2
 			// 
-			this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-			this.dateTimePicker2.Location = new System.Drawing.Point(300, 18);
-			this.dateTimePicker2.Name = "dateTimePicker2";
-			this.dateTimePicker2.Size = new System.Drawing.Size(130, 20);
-			this.dateTimePicker2.TabIndex = 2;
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(15, 25);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(30, 13);
+			this.label2.TabIndex = 0;
+			this.label2.Text = "From";
 			// 
 			// groupBox2
 			// 
@@ -151,6 +168,13 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Schedule Details";
 			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(498, 18);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(49, 20);
+			this.textBox1.TabIndex = 8;
+			// 
 			// dateTimePicker4
 			// 
 			this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Time;
@@ -160,6 +184,15 @@
 			this.dateTimePicker4.TabIndex = 3;
 			this.dateTimePicker4.Visible = false;
 			this.dateTimePicker4.ValueChanged += new System.EventHandler(this.dateTimePicker4_ValueChanged);
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(400, 21);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(92, 13);
+			this.label6.TabIndex = 7;
+			this.label6.Text = "Maximum Patients";
 			// 
 			// dateTimePicker5
 			// 
@@ -189,39 +222,6 @@
 			this.label5.TabIndex = 0;
 			this.label5.Text = "From";
 			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(465, 18);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(98, 21);
-			this.button1.TabIndex = 4;
-			this.button1.Text = "Check";
-			this.button1.UseVisualStyleBackColor = true;
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(400, 21);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(92, 13);
-			this.label6.TabIndex = 7;
-			this.label6.Text = "Maximum Patients";
-			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(498, 18);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(49, 20);
-			this.textBox1.TabIndex = 8;
-			// 
-			// dateTimePicker3
-			// 
-			this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-			this.dateTimePicker3.Location = new System.Drawing.Point(62, 19);
-			this.dateTimePicker3.Name = "dateTimePicker3";
-			this.dateTimePicker3.Size = new System.Drawing.Size(130, 20);
-			this.dateTimePicker3.TabIndex = 5;
-			// 
 			// groupBox3
 			// 
 			this.groupBox3.Controls.Add(this.dataGridView1);
@@ -236,7 +236,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(664, 532);
+			this.ClientSize = new System.Drawing.Size(664, 480);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
