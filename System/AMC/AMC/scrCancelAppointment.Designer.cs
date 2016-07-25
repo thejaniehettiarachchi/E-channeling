@@ -1,6 +1,6 @@
 ﻿namespace AMC
 {
-	partial class scrCancelAppointment
+	partial class ScrCancelAppointment
 	{
 		/// <summary>
 		/// Required designer variable.

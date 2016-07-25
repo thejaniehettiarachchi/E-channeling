@@ -10,14 +10,24 @@ using System.Windows.Forms;
 
 namespace AMC
 {
-	public partial class ScrCancelAppointment : Form
+	public partial class DoctorRegistration : Form
 	{
-		public ScrCancelAppointment()
+		public DoctorRegistration()
 		{
 			InitializeComponent();
 		}
 
-		private void label2_Click(object sender, EventArgs e)
+		private void label1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void pictureBox1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void textBox6_TextChanged(object sender, EventArgs e)
 		{
 
 		}
