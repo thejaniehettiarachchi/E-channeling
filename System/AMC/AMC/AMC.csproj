@@ -64,11 +64,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
-    <Compile Include="scrCancelAppointment.cs">
-=======
+
+    <Compile Include="scrCancelAppointment.cs"/>
+
     <Compile Include="ScrCancelAppointment.cs">
->>>>>>> cbbcc1856e1865855dc8c403f221a9612f46f854
+
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ScrCancelAppointment.Designer.cs">
@@ -80,16 +80,16 @@
     <Compile Include="ScrSetAppointment.Designer.cs">
       <DependentUpon>ScrSetAppointment.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Form1.resx">
+
+    <EmbeddedResource Include="Form1.resx"/>
       <DependentUpon>Form1.cs</DependentUpon>
-=======
+
     <EmbeddedResource Include="ScrDoctorRegistration.resx">
       <DependentUpon>ScrDoctorRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScrHome.resx">
       <DependentUpon>ScrHome.cs</DependentUpon>
->>>>>>> cbbcc1856e1865855dc8c403f221a9612f46f854
+
     </EmbeddedResource>
     <EmbeddedResource Include="AddSchedule.resx">
       <DependentUpon>AddSchedule.cs</DependentUpon>
