@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AMC
 {
-	public partial class DoctorRegistration : Form
+	public partial class ScrDoctorRegistration : Form
 	{
-		public DoctorRegistration()
+		public ScrDoctorRegistration()
 		{
 			InitializeComponent();
 		}

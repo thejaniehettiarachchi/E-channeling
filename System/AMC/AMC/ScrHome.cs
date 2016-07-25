@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AMC
 {
-	public partial class Form1 : Form
+	public partial class ScrHome : Form
 	{
-		public Form1()
+		public ScrHome()
 		{
 			InitializeComponent();
 		}
