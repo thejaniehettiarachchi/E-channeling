@@ -81,15 +81,14 @@
       <DependentUpon>ScrSetAppointment.cs</DependentUpon>
     </Compile>
 
-    <EmbeddedResource Include="Form1.resx"/>
+    <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-
+    </EmbeddedResource>
     <EmbeddedResource Include="ScrDoctorRegistration.resx">
       <DependentUpon>ScrDoctorRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScrHome.resx">
       <DependentUpon>ScrHome.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="AddSchedule.resx">
       <DependentUpon>AddSchedule.cs</DependentUpon>
