@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScrSetAppointment));
 			this.label1 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -65,13 +66,13 @@
 			this.label18 = new System.Windows.Forms.Label();
 			this.textBox9 = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.radioButton8 = new System.Windows.Forms.RadioButton();
+			this.radioButton7 = new System.Windows.Forms.RadioButton();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.radioButton7 = new System.Windows.Forms.RadioButton();
-			this.radioButton8 = new System.Windows.Forms.RadioButton();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
@@ -432,6 +433,15 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Search Details";
 			// 
+			// groupBox5
+			// 
+			this.groupBox5.Location = new System.Drawing.Point(7, 73);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(529, 55);
+			this.groupBox5.TabIndex = 7;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Date";
+			// 
 			// groupBox2
 			// 
 			this.groupBox2.Controls.Add(this.groupBox3);
@@ -461,6 +471,28 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Address";
 			// 
+			// radioButton8
+			// 
+			this.radioButton8.AutoSize = true;
+			this.radioButton8.Location = new System.Drawing.Point(135, 307);
+			this.radioButton8.Name = "radioButton8";
+			this.radioButton8.Size = new System.Drawing.Size(60, 17);
+			this.radioButton8.TabIndex = 6;
+			this.radioButton8.TabStop = true;
+			this.radioButton8.Text = "Foreign";
+			this.radioButton8.UseVisualStyleBackColor = true;
+			// 
+			// radioButton7
+			// 
+			this.radioButton7.AutoSize = true;
+			this.radioButton7.Location = new System.Drawing.Point(74, 307);
+			this.radioButton7.Name = "radioButton7";
+			this.radioButton7.Size = new System.Drawing.Size(51, 17);
+			this.radioButton7.TabIndex = 6;
+			this.radioButton7.TabStop = true;
+			this.radioButton7.Text = "Local";
+			this.radioButton7.UseVisualStyleBackColor = true;
+			// 
 			// groupBox4
 			// 
 			this.groupBox4.Location = new System.Drawing.Point(6, 226);
@@ -479,37 +511,6 @@
 			this.label3.TabIndex = 0;
 			this.label3.Text = "Title";
 			this.label3.Click += new System.EventHandler(this.label1_Click);
-			// 
-			// radioButton7
-			// 
-			this.radioButton7.AutoSize = true;
-			this.radioButton7.Location = new System.Drawing.Point(74, 307);
-			this.radioButton7.Name = "radioButton7";
-			this.radioButton7.Size = new System.Drawing.Size(51, 17);
-			this.radioButton7.TabIndex = 6;
-			this.radioButton7.TabStop = true;
-			this.radioButton7.Text = "Local";
-			this.radioButton7.UseVisualStyleBackColor = true;
-			// 
-			// radioButton8
-			// 
-			this.radioButton8.AutoSize = true;
-			this.radioButton8.Location = new System.Drawing.Point(135, 307);
-			this.radioButton8.Name = "radioButton8";
-			this.radioButton8.Size = new System.Drawing.Size(60, 17);
-			this.radioButton8.TabIndex = 6;
-			this.radioButton8.TabStop = true;
-			this.radioButton8.Text = "Foreign";
-			this.radioButton8.UseVisualStyleBackColor = true;
-			// 
-			// groupBox5
-			// 
-			this.groupBox5.Location = new System.Drawing.Point(7, 73);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(529, 55);
-			this.groupBox5.TabIndex = 7;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "Date";
 			// 
 			// button2
 			// 
@@ -565,6 +566,7 @@
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.groupBox2);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ScrSetAppointment";
 			this.Text = "Place Appointment";
 			this.groupBox1.ResumeLayout(false);

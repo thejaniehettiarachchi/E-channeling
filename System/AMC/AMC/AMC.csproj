@@ -44,11 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="ScrDoctorRegistration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ScrDoctorRegistration.Designer.cs">
+      <DependentUpon>ScrDoctorRegistration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScrHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScrHome.Designer.cs">
+      <DependentUpon>ScrHome.cs</DependentUpon>
     </Compile>
     <Compile Include="AddSchedule.cs">
       <SubType>Form</SubType>
@@ -58,11 +64,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="scrCancelAppointment.cs">
+=======
+    <Compile Include="ScrCancelAppointment.cs">
+>>>>>>> cbbcc1856e1865855dc8c403f221a9612f46f854
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="scrCancelAppointment.Designer.cs">
-      <DependentUpon>scrCancelAppointment.cs</DependentUpon>
+    <Compile Include="ScrCancelAppointment.Designer.cs">
+      <DependentUpon>ScrCancelAppointment.cs</DependentUpon>
     </Compile>
     <Compile Include="ScrSetAppointment.cs">
       <SubType>Form</SubType>
@@ -70,8 +80,16 @@
     <Compile Include="ScrSetAppointment.Designer.cs">
       <DependentUpon>ScrSetAppointment.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="ScrDoctorRegistration.resx">
+      <DependentUpon>ScrDoctorRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScrHome.resx">
+      <DependentUpon>ScrHome.cs</DependentUpon>
+>>>>>>> cbbcc1856e1865855dc8c403f221a9612f46f854
     </EmbeddedResource>
     <EmbeddedResource Include="AddSchedule.resx">
       <DependentUpon>AddSchedule.cs</DependentUpon>
@@ -85,8 +103,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="scrCancelAppointment.resx">
-      <DependentUpon>scrCancelAppointment.cs</DependentUpon>
+    <EmbeddedResource Include="ScrCancelAppointment.resx">
+      <DependentUpon>ScrCancelAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScrSetAppointment.resx">
       <DependentUpon>ScrSetAppointment.cs</DependentUpon>
