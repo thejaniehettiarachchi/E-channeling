@@ -19,9 +19,7 @@ drop procedure AddAppointment;
 DELIMITER // 
 create procedure AddAppointment(
     vPID int,
-    vDID int,
-	vSchID int,
-    vDate date	
+	vSchID int
     )
 
 BEGIN
@@ -29,10 +27,14 @@ BEGIN
 	Declare vQueNo int;
     Declare vtime time;
     Declare vFee double;
+    Declare vDate date;
+    Declare vDID date;
 
 	set vQueNo = getQueueNo(vSchID);
     set vTime = getTime(vSchID);
     set vFee = getFee (vSchID);
+    set vDate = (select Date from Schedule where SchID = vSchID);
+    set vDID = (select DID from Schedule where SchID = vSchID);
     
 	insert into Appointment (
 	PID,
@@ -57,22 +59,30 @@ BEGIN
 END //
 DELIMITER ;
 
+drop procedure UpdateAppointment;
+
+
 DELIMITER // 
 create procedure UpdateAppointment(
-	vRefID int,
-    vPID int,
-    vDID int,
-	vSchID int,
-    vDate date,
-	vTime time,
-	vQueNo int,
-	vbFee double(8,2)
+    vRefID int,
+	vSchID int
 )
 
 BEGIN
 
+	Declare vQueNo int;
+    Declare vtime time;
+    Declare vFee double;
+    Declare vDate date;
+    Declare vDID date;
+
+	set vQueNo = getQueueNo(vSchID);
+    set vTime = getTime(vSchID);
+    set vFee = getFee (vSchID);
+    set vDate = (select Date from Schedule where SchID = vSchID);
+    set vDID = (select DID from Schedule where SchID = vSchID);
+    
 	update Appointment set 
-	PID = vPID,
     DID = vDID,
 	SchID = vSchID,
     Date = vDate,
@@ -85,17 +95,21 @@ BEGIN
 END //
 DELIMITER ;
 
+drop procedure CancelAppointment;
+drop procedure CloseAppointment;
+
+
 DELIMITER //
-create procedure CancelAppointment(vSchID int)
+create procedure CancelAppointment(vRefID int)
 BEGIN
-	update Appoinment set status = 1 where SchID = VSchID; 
+	update Appoinment set status = 1 where RefID = VRefID; 
 END //
 DELIMITER ;
 
 DELIMITER //
-create procedure CloseAppointment(vSchID int)
+create procedure CloseAppointment(vRefID int)
 BEGIN
-	update Appoinment set status = 3 where SchID = VSchID; 
+	update Appoinment set status = 3 where RefID = VRefID; 
 END //
 DELIMITER ;
 
@@ -106,9 +120,11 @@ BEGIN
     
 	Declare QueueNo int default 0;
     
-    select count(*) into QueueNo
+    select QueNo into QueueNo
     from Appointment
-    where SchID = vSchID;
+    where SchID = vSchID
+    order by QueNo desc 
+    limit 1;
     
     return (QueueNo +1);
     
@@ -129,7 +145,7 @@ BEGIN
     Declare extraTime int; #extra time to arrive early (seconds)
     
     set QueueNo = getQueueNo(vSchID);
-    set extraTime = 600;
+    set extraTime = 1200;
     
     select startTime, endTime, maxPatients into sTime, eTime, mPatients
     from Schedule
